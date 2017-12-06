@@ -24,13 +24,15 @@ char user[9][9] = {
     {' ',' ','5',' ','O','O','O','O','O'}};
 
 void Map(char user[9][9], char answer[9][9]);
+int rule();
 
 int main()
 {
     system("clear"); printf("\n");
     printf("  ***** N E M O N E M O *****\n");
     printf("  1. Game Start\n");
-    printf("  2. Exit\n\n");
+    printf("  2. How to\n");
+    printf("  3. Exit\n\n");
     
     while(1)
     {
@@ -43,16 +45,48 @@ int main()
         switch(menu){
             case 1:
                 system("clear"); printf("\n");
-                Map(user, answer);
-                
+                Map(user, answer);                
                 return 0;
             case 2:
+                rule();
+                return 0;
+            case 3:
                 printf("  Shut down your game.\n\n");
                 return 0;
             default:
                 printf("  You have entered the wrong menu.\n\n");
         }
     }
+    return 0;
+}
+
+int rule()
+{
+    char num;
+    system("clear"); printf("\n");
+    printf("  ***** N E M O N E M O *****\n\n");
+    printf("  1. The game is to draw a hidden picture by looking at the figures on the left and right sides of the picture.\n\n");
+    printf("  2. One digit is the number of squares that can be filled continuously.\n\n");
+    printf("  3. Multiple numbers require more than one space between digits and digits.\n\n");
+    
+    while(1)
+    {
+        printf("  Please enter(Back = 'b') ; ");
+        scanf("%c",&num);
+        getchar();
+
+        if(num == 'b')
+        {
+            system("clear");
+            main();
+            break;
+        }
+        else
+        {
+            printf("  Please enter a word. \n\n");
+        }
+    }
+
     return 0;
 }
 

@@ -2,29 +2,31 @@
 #include <stdlib.h>
 
 char answer[9][9] = {
-    {' ',' ',' ',' ',' ',' ',' ',' ',' '},
-    {' ',' ',' ',' ','1','2',' ','2','1'},
-    {' ',' ',' ',' ','1','2','5','2','1'},
-    {' ',' ',' ',' ',' ',' ',' ',' ',' '},
-    {' ',' ','5',' ','1','1','1','1','1'},
-    {' ',' ','3',' ','0','1','1','1','0'},
-    {' ',' ','1',' ','0','0','1','0','0'},
-    {' ',' ','3',' ','0','1','1','1','0'},
-    {' ',' ','5',' ','1','1','1','1','1'}};
+    {32,32,32,32,32,32,32,32,32},
+    {32,32,32,32,'1','2',32,'2','1'},
+    {32,32,32,32,'1','2','5','2','1'},
+    {32,32,32,32,32,32,32,32,32},
+    {32,32,'5',32,'1','1','1','1','1'},
+    {32,32,'3',32,'0','1','1','1','0'},
+    {32,32,'1',32,'0','0','1','0','0'},
+    {32,32,'3',32,'0','1','1','1','0'},
+    {32,32,'5',32,'1','1','1','1','1'}};
 
 char user[9][9] = {
-    {' ',' ',' ',' ',' ',' ',' ',' ',' '},
-    {' ',' ',' ',' ','1','2',' ','2','1'},
-    {' ',' ',' ',' ','1','2','5','2','1'},
-    {' ',' ',' ',' ',' ',' ',' ',' ',' '},
-    {' ',' ','5',' ','O','O','O','O','O'},
-    {' ',' ','3',' ','O','O','O','O','O'},
-    {' ',' ','1',' ','O','O','O','O','O'},
-    {' ',' ','3',' ','O','O','O','O','O'},
-    {' ',' ','5',' ','O','O','O','O','O'}};
+    {32,32,32,32,32,32,32,32,32},
+    {32,32,32,32,'1','2',32,'2','1'},
+    {32,32,32,32,'1','2','5','2','1'},
+    {32,32,32,32,32,32,32,32,32},
+    {32,32,'5',32,'O','O','O','O','O'},
+    {32,32,'3',32,'O','O','O','O','O'},
+    {32,32,'1',32,'O','O','O','O','O'},
+    {32,32,'3',32,'O','O','O','O','O'},
+    {32,32,'5',32,'O','O','O','O','O'}};
 
 void Map(char user[9][9], char answer[9][9]);
-int rule();
+void rule();
+void k_O(int i, int j);
+void k_X(int i, int j);
 
 int main()
 {
@@ -60,7 +62,7 @@ int main()
     return 0;
 }
 
-int rule()
+void rule()
 {
     char num;
     system("clear"); printf("\n");
@@ -73,7 +75,6 @@ int rule()
     {
         printf("  Please enter(Back = 'b') ; ");
         scanf("%c",&num);
-        getchar();
 
         if(num == 'b')
         {
@@ -86,8 +87,6 @@ int rule()
             printf("  Please enter a word. \n\n");
         }
     }
-
-    return 0;
 }
 
 void Map(char user[9][9], char answer[9][9])
@@ -100,6 +99,9 @@ void Map(char user[9][9], char answer[9][9])
             printf("%2c", user[a][b]);}
         printf("\n");
     }
+    printf("\n");
+while(1){
+    int count = 17;
 
     printf("  Enter Coordinates: ");
     scanf("%d %d", &i, &j);
@@ -111,31 +113,78 @@ void Map(char user[9][9], char answer[9][9])
         scanf("%c", &k);
         getchar();
 
+        i+=3; j+=3;
+        
         if (k=='O'){
+            system("clear"); printf("\n");
+            k_O(i,j);
             break;
         }
         else if (k=='X'){
+            system("clear"); printf("\n");
+            k_X(i,j);
             break;
         }
         else{
             printf("  Invalid input!!\n\n");
         }
     }
-
-    i+=3; j+=3;
-    if(k='O')
-    {
-        if(answer[i][j] == 1)
-            user[i][j] = '■';
-        else
-            user[i][j] = 'X';
-    }
-    if(k='X')
-    {
-        if(answer[i][j] == 1)
-            user[i][j] == '■';
-        else
-            user[i][j] == 'X';
-    }
     printf("\n");
+    count-=1;
+    if(count=0)
+        break;
+}
+
+}
+
+void k_O(int i, int j){
+    while(1){
+        if(answer[i][j] == '1'){
+            user[i][j] = '*';
+                
+            for(i=0; i<=8; i++){
+                for(j=0; j<=8; j++){
+                    printf("%2c", user[i][j]);
+                }
+                printf("\n");    
+            }
+            break;
+        }
+        else {
+            user[i][j] = 'X';
+            for(i=0; i<=8; i++){
+                for(j=0; j<=8; j++){
+                    printf("%2c", user[i][j]);
+                }
+                printf("\n");
+            }
+            break;
+        }
+    }
+}
+
+void k_X(int i, int j){
+    while(1){
+        if(answer[i][j] == '1'){
+            user[i][j] = '*';
+                
+            for(i=0; i<=8; i++){
+                for(j=0; j<=8; j++){
+                    printf("%2c", user[i][j]);
+                }
+                printf("\n");    
+            }
+            break;
+        }
+        else {
+            user[i][j] = 'X';
+            for(i=0; i<=8; i++){
+                for(j=0; j<=8; j++){
+                    printf("%2c", user[i][j]);
+                }
+                printf("\n");
+            }
+            break;
+        }
+    }
 }

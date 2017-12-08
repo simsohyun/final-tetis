@@ -17,11 +17,11 @@ char user[9][9] = {
     {32,32,32,32,'1','2',32,'2','1'},
     {32,32,32,32,'1','2','5','2','1'},
     {32,32,32,32,32,32,32,32,32},
-    {32,32,'5',32,'O','O','O','O','O'},
-    {32,32,'3',32,'O','O','O','O','O'},
-    {32,32,'1',32,'O','O','O','O','O'},
-    {32,32,'3',32,'O','O','O','O','O'},
-    {32,32,'5',32,'O','O','O','O','O'}};
+    {32,32,'5',32,'*','*','*','*','*'},
+    {32,32,'3',32,'*','*','*','*','*'},
+    {32,32,'1',32,'*','*','*','*','*'},
+    {32,32,'3',32,'*','*','*','*','*'},
+    {32,32,'5',32,'*','*','*','*','*'}};
 
 void Map(char user[9][9], char answer[9][9]);
 void rule();
@@ -100,47 +100,62 @@ void Map(char user[9][9], char answer[9][9])
         printf("\n");
     }
     printf("\n");
-while(1){
-    int count = 17;
+    
+    int count=25;
+    while(1){
+        while(1){
+            printf("  Enter 'X' Coordinates: ");
+            scanf("%d", &i);
+            getchar();
+            if (i<1 || i>5)
+                printf("  Invalid input!!\n\n");
+            else
+                break;
+        }
 
-    printf("  Enter Coordinates: ");
-    scanf("%d %d", &i, &j);
-    getchar();
+        while(1){
+            printf("  Enter 'Y' Coordinates: ");
+            scanf("%d", &j);
+            getchar();
+            if (j<1 || j>5)
+                printf("  Invalid input!!\n\n");
+            else
+                break;
+        }
+    
+        while(1)
+        {
+            printf("  Enter O or X(ONLY CAPITAL): ");
+            scanf("%c", &k);
+            getchar();
 
-    while(1)
-    {
-        printf("  Enter O or X(ONLY CAPITAL): ");
-        scanf("%c", &k);
-        getchar();
-
-        i+=3; j+=3;
-        
-        if (k=='O'){
-            system("clear"); printf("\n");
-            k_O(i,j);
+            if (k=='O'){
+                i+=3; j+=3;
+                system("clear"); printf("\n");
+                k_O(i,j);
+                break;
+            }
+            else if (k=='X'){
+                i+=3; j+=3;
+                system("clear"); printf("\n");
+                k_X(i,j);
+                break;
+            }
+            else{
+                printf("  Invalid input!!\n\n");
+            }
+        }
+        count-=1;
+        printf("\n");
+        if (count<=0)
             break;
-        }
-        else if (k=='X'){
-            system("clear"); printf("\n");
-            k_X(i,j);
-            break;
-        }
-        else{
-            printf("  Invalid input!!\n\n");
-        }
     }
-    printf("\n");
-    count-=1;
-    if(count=0)
-        break;
-}
-
 }
 
 void k_O(int i, int j){
     while(1){
         if(answer[i][j] == '1'){
-            user[i][j] = '*';
+            user[i][j] = 'O';
                 
             for(i=0; i<=8; i++){
                 for(j=0; j<=8; j++){
@@ -166,7 +181,7 @@ void k_O(int i, int j){
 void k_X(int i, int j){
     while(1){
         if(answer[i][j] == '1'){
-            user[i][j] = '*';
+            user[i][j] = 'O';
                 
             for(i=0; i<=8; i++){
                 for(j=0; j<=8; j++){

@@ -101,7 +101,7 @@ void Map(char user[9][9], char answer[9][9])
     }
     printf("\n");
     
-    int count=25;
+    //int count=25;
     while(1){
         while(1){
             printf("  Enter 'X' Coordinates: ");
@@ -145,10 +145,12 @@ void Map(char user[9][9], char answer[9][9])
                 printf("  Invalid input!!\n\n");
             }
         }
+        /*
         count-=1;
         printf("\n");
         if (count<=0)
             break;
+        */
     }
 }
 
@@ -163,16 +165,19 @@ void k_O(int i, int j){
                 }
                 printf("\n");    
             }
+            printf("\n");
+            printf("  The O,X input was correct.\n\n");
             break;
         }
         else {
-            user[i][j] = 'X';
             for(i=0; i<=8; i++){
                 for(j=0; j<=8; j++){
                     printf("%2c", user[i][j]);
                 }
                 printf("\n");
             }
+            printf("\n");
+            printf("  The O,X input was incorrect.\n\n");
             break;
         }
     }
@@ -181,14 +186,14 @@ void k_O(int i, int j){
 void k_X(int i, int j){
     while(1){
         if(answer[i][j] == '1'){
-            user[i][j] = 'O';
-                
             for(i=0; i<=8; i++){
                 for(j=0; j<=8; j++){
                     printf("%2c", user[i][j]);
                 }
                 printf("\n");    
             }
+            printf("\n");
+            printf("  The O,X input was incorrect.\n\n");
             break;
         }
         else {
@@ -199,6 +204,8 @@ void k_X(int i, int j){
                 }
                 printf("\n");
             }
+            printf("\n");
+            printf("  The O,X input was correct.\n\n");
             break;
         }
     }

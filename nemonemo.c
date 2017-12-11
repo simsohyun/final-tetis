@@ -23,6 +23,8 @@ char user[9][9] = {
     {32,32,'3',32,'*','*','*','*','*'},
     {32,32,'5',32,'*','*','*','*','*'}};
 
+char life[9] = {32,32,32,32,32,32,'I','I','I'};
+
 void Map(char user[9][9], char answer[9][9]);
 void rule();
 void k_O(int i, int j);
@@ -47,7 +49,7 @@ int main()
         switch(menu){
             case 1:
                 system("clear"); printf("\n");
-                Map(user, answer);                
+                Map(user, answer);
                 return 0;
             case 2:
                 rule();
@@ -75,6 +77,7 @@ void rule()
     {
         printf("  Please enter(Back = 'b') ; ");
         scanf("%c",&num);
+        getchar();
 
         if(num == 'b')
         {
@@ -85,13 +88,14 @@ void rule()
         else
         {
             printf("  Please enter a word. \n\n");
+    
         }
     }
 }
 
 void Map(char user[9][9], char answer[9][9])
 {
-    int i, j, a, b;
+    int i, j, a, b,l;
     char k;
     
     for(a=0; a<=8; a++){
@@ -99,26 +103,32 @@ void Map(char user[9][9], char answer[9][9])
             printf("%2c", user[a][b]);}
         printf("\n");
     }
+    
+    for(l=0;l<=8;l++)
+    {
+    printf("%2c",life[l]);    
+    }
     printf("\n");
     
+
     //int count=25;
     while(1){
         while(1){
-            printf("  Enter 'X' Coordinates: ");
+            printf("  Enter 'X' Coordinates(1~5): ");
             scanf("%d", &i);
             getchar();
             if (i<1 || i>5)
-                printf("  Invalid input!!\n\n");
+                printf("  The 'X' coordinate value is invalid!!\n\n");
             else
                 break;
         }
 
         while(1){
-            printf("  Enter 'Y' Coordinates: ");
+            printf("  Enter 'Y' Coordinates(1~5): ");
             scanf("%d", &j);
             getchar();
             if (j<1 || j>5)
-                printf("  Invalid input!!\n\n");
+                printf("  The 'Y' coordinates value is invalid!!\n\n");
             else
                 break;
         }
@@ -145,6 +155,7 @@ void Map(char user[9][9], char answer[9][9])
                 printf("  Invalid input!!\n\n");
             }
         }
+
         /*
         count-=1;
         printf("\n");
@@ -155,6 +166,7 @@ void Map(char user[9][9], char answer[9][9])
 }
 
 void k_O(int i, int j){
+    int l;
     while(1){
         if(answer[i][j] == '1'){
             user[i][j] = 'O';
@@ -164,6 +176,11 @@ void k_O(int i, int j){
                     printf("%2c", user[i][j]);
                 }
                 printf("\n");    
+            }
+
+            for(l=0;l<=8;l++)
+            {
+                printf("%2c",life[l]);
             }
             printf("\n");
             printf("  The O,X input was correct.\n\n");
@@ -176,6 +193,10 @@ void k_O(int i, int j){
                 }
                 printf("\n");
             }
+            for(l=0;l<=8;l++)
+            {
+                printf("%2c",life[l]);
+            }
             printf("\n");
             printf("  The O,X input was incorrect.\n\n");
             break;
@@ -184,6 +205,7 @@ void k_O(int i, int j){
 }
 
 void k_X(int i, int j){
+    int l;
     while(1){
         if(answer[i][j] == '1'){
             for(i=0; i<=8; i++){
@@ -192,6 +214,10 @@ void k_X(int i, int j){
                 }
                 printf("\n");    
             }
+            for(l=0;l<=8;l++)
+            {
+                printf("%2c",life[l]);
+                }
             printf("\n");
             printf("  The O,X input was incorrect.\n\n");
             break;
@@ -204,9 +230,14 @@ void k_X(int i, int j){
                 }
                 printf("\n");
             }
+            for(l=0;l<=8;l++)
+            {
+                printf("%2c",life[l]);
+            }
             printf("\n");
             printf("  The O,X input was correct.\n\n");
             break;
         }
     }
 }
+

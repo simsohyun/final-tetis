@@ -23,12 +23,13 @@ char user[9][9] = {
     {32,32,'3',32,'*','*','*','*','*'},
     {32,32,'5',32,'*','*','*','*','*'}};
 
-char life[9] = {32,32,32,32,32,32,'I','I','I'};
-
 void Map(char user[9][9], char answer[9][9]);
 void rule();
 void k_O(int i, int j);
 void k_X(int i, int j);
+
+int count=17;
+int life=3;
 
 int main()
 {
@@ -95,7 +96,7 @@ void rule()
 
 void Map(char user[9][9], char answer[9][9])
 {
-    int i, j, a, b,l;
+    int i, j, a, b, l;
     char k;
     
     for(a=0; a<=8; a++){
@@ -104,14 +105,8 @@ void Map(char user[9][9], char answer[9][9])
         printf("\n");
     }
     
-    for(l=0;l<=8;l++)
-    {
-    printf("%2c",life[l]);    
-    }
     printf("\n");
-    
 
-    //int count=25;
     while(1){
         while(1){
             printf("  Enter 'X' Coordinates(1~5): ");
@@ -155,13 +150,10 @@ void Map(char user[9][9], char answer[9][9])
                 printf("  Invalid input!!\n\n");
             }
         }
-
-        /*
-        count-=1;
-        printf("\n");
         if (count<=0)
             break;
-        */
+        if (life<=0)
+            break;
     }
 }
 
@@ -177,13 +169,9 @@ void k_O(int i, int j){
                 }
                 printf("\n");    
             }
-
-            for(l=0;l<=8;l++)
-            {
-                printf("%2c",life[l]);
-            }
             printf("\n");
             printf("  The O,X input was correct.\n\n");
+            count-=1;
             break;
         }
         else {
@@ -193,12 +181,9 @@ void k_O(int i, int j){
                 }
                 printf("\n");
             }
-            for(l=0;l<=8;l++)
-            {
-                printf("%2c",life[l]);
-            }
             printf("\n");
-            printf("  The O,X input was incorrect.\n\n");
+            life-=1;
+            printf("  The O,X input was incorrect. There are %d remaining games of life. \n\n", life);
             break;
         }
     }
@@ -214,12 +199,9 @@ void k_X(int i, int j){
                 }
                 printf("\n");    
             }
-            for(l=0;l<=8;l++)
-            {
-                printf("%2c",life[l]);
-                }
             printf("\n");
-            printf("  The O,X input was incorrect.\n\n");
+            life-=1;
+            printf("  The O,X input was incorrect. There are %d remaining games of life. \n\n", life);
             break;
         }
         else {
@@ -230,14 +212,9 @@ void k_X(int i, int j){
                 }
                 printf("\n");
             }
-            for(l=0;l<=8;l++)
-            {
-                printf("%2c",life[l]);
-            }
             printf("\n");
             printf("  The O,X input was correct.\n\n");
             break;
         }
     }
 }
-

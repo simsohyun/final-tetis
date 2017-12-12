@@ -27,6 +27,7 @@ void Map(char user[9][9], char answer[9][9]);
 void rule();
 void k_O(int i, int j);
 void k_X(int i, int j);
+int Coordinates_check(int i, int j);
 
 int count=17;
 int life=3;
@@ -73,7 +74,8 @@ void rule()
     printf("  1. The game is to draw a hidden picture by looking at the figures on the left and right sides of the picture.\n\n");
     printf("  2. One digit is the number of squares that can be filled continuously.\n\n");
     printf("  3. Multiple numbers require more than one space between digits and digits.\n\n");
-    
+    printf("  4. If the wrong input is more than 3 times, the game ends.\n\n");
+
     while(1)
     {
         printf("  Please enter(Back = 'b') ; ");
@@ -108,8 +110,10 @@ void Map(char user[9][9], char answer[9][9])
     printf("\n");
 
     while(1){
+    while(1){
+        int re;
         while(1){
-            printf("  Enter 'X' Coordinates(1~5): ");
+            printf("  Enter 'X' Coordinate(1~5): ");
             scanf("%d", &i);
             getchar();
             if (i<1 || i>5)
@@ -119,21 +123,25 @@ void Map(char user[9][9], char answer[9][9])
         }
 
         while(1){
-            printf("  Enter 'Y' Coordinates(1~5): ");
+            printf("  Enter 'Y' Coordinate(1~5): ");
             scanf("%d", &j);
             getchar();
             if (j<1 || j>5)
-                printf("  The 'Y' coordinates value is invalid!!\n\n");
+                printf("  The 'Y' coordinate value is invalid!!\n\n");
             else
                 break;
         }
-    
+        
+        re = Coordinates_check(i,j);
+        if (re == 0)
+            break;
+    }
         while(1)
         {
             printf("  Enter O or X(ONLY CAPITAL): ");
             scanf("%c", &k);
             getchar();
-
+    
             if (k=='O'){
                 i+=3; j+=3;
                 system("clear"); printf("\n");
@@ -152,8 +160,10 @@ void Map(char user[9][9], char answer[9][9])
         }
         if (count<=0)
             break;
-        if (life<=0)
+        if (life<=0){
+            printf("  ***** Game Over *****\n\n");
             break;
+        }
     }
 }
 
@@ -216,5 +226,15 @@ void k_X(int i, int j){
             printf("  The O,X input was correct.\n\n");
             break;
         }
+    }
+}
+
+int Coordinates_check(int i, int j){
+    i+=3; j+=3;
+    if (user[i][j] == '*')
+        return 0;
+    else if (user[i][j] == 'O' || user[i][j] == 'X'){
+        printf("  The coordinates already entered.\n\n");
+        return 1;
     }
 }

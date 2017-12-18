@@ -1,5 +1,9 @@
 void Map(char user[9][9], char answer[9][9])
 {
+
+    extern int count;
+    extern int life;
+
     int i, j, a, b;
     char k;
     for(a=0; a<=8; a++){

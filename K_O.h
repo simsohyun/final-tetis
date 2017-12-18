@@ -12,7 +12,7 @@ void k_O(int i, int j){
             }
             printf("\n");
             printf("  The O,X input was correct.\n\n");
-            count-=1;
+           count-=1;
             break;
         }
         else {
@@ -23,7 +23,7 @@ void k_O(int i, int j){
                 printf("\n");
             }
             printf("\n");
-            life-=1;
+           life-=1;
             printf("  The O,X input was incorrect. There are %d remaining games of life. \n\n", life);
             break;
         }

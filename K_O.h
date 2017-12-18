@@ -1,4 +1,9 @@
 void k_O(int i, int j){
+extern char answer[9][9];
+extern char user[9][9];
+extern int count;
+extern int life;
+
     int l;
     while(1){
         if(answer[i][j] == '1'){

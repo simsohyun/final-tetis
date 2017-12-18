@@ -1,5 +1,7 @@
 #include <stdio.h>
 #include <stdlib.h>
+#include  "Coordinate_check.h"
+#include "rule.h"
 
 char answer[9][9] = {
     {32,32,32,32,32,32,32,32,32},
@@ -24,10 +26,8 @@ char user[9][9] = {
     {32,32,'5',32,'*','*','*','*','*'}};
 
 void Map(char user[9][9], char answer[9][9]);
-void rule();
 void k_O(int i, int j);
 void k_X(int i, int j);
-int Coordinates_check(int i, int j);
 
 int count=17;
 int life=3;
@@ -66,39 +66,9 @@ int main()
     return 0;
 }
 
-void rule()
-{
-    char num;
-    system("clear"); printf("\n");
-    printf("  ***** N E M O N E M O *****\n\n");
-    printf("  1. The game is to draw a hidden picture by looking at the figures on the left and right sides of the picture.\n\n");
-    printf("  2. One digit is the number of squares that can be filled continuously.\n\n");
-    printf("  3. Multiple numbers require more than one space between digits and digits.\n\n");
-    printf("  4. If the wrong input is more than 3 times, the game ends.\n\n");
-
-    while(1)
-    {
-        printf("  Please enter(Back = 'b') ; ");
-        scanf("%c",&num);
-        getchar();
-
-        if(num == 'b')
-        {
-            system("clear");
-            main();
-            break;
-        }
-        else
-        {
-            printf("  Please enter a word. \n\n");
-    
-        }
-    }
-}
-
 void Map(char user[9][9], char answer[9][9])
 {
-    int i, j, a, b, l;
+    int i, j, a, b;
     char k;
     
     for(a=0; a<=8; a++){
@@ -232,12 +202,3 @@ void k_X(int i, int j){
     }
 }
 
-int Coordinates_check(int i, int j){
-    i+=3; j+=3;
-    if (user[i][j] == '*')
-        return 0;
-    else if (user[i][j] == 'O' || user[i][j] == 'X'){
-        printf("  The coordinates already entered.\n\n");
-        return 1;
-    }
-}

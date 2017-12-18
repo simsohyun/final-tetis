@@ -17,7 +17,7 @@ void rule()
         if(num == 'b')
         {
             system("clear");
-            main();
+           main();
             break;
         }
         else
